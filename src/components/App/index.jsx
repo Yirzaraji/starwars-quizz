@@ -7,7 +7,7 @@ import Header from "../Header";
 import Landing from "../Home";
 import Login from "../Login";
 import Signup from "../Signup";
-import Welcome from "../Welcome";
+import Welcome from "../Welcome/index";
 
 function App() {
   return (
@@ -17,9 +17,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Landing />} />
         <Route path="/welcome" element={<Welcome />} />
-
-        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
 

@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-
 import React, { useRef, useEffect, useState, Fragment } from "react";
 
 const Landing = () => {
   const refWolverine = useRef(null);
   const [btn, setBtn] = useState(false);
-  console.log(refWolverine);
+  //console.log(refWolverine);
 
   useEffect(() => {
     refWolverine.current.classList.add("startingImg");

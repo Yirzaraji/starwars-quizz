@@ -1,20 +1,16 @@
-import React, { useState } from "react";
-import { useFirebase } from "../Firebase/firebaseContext";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { FirebaseContext } from "../Firebase";
 
 const Login = () => {
-  const { auth } = useFirebase();
+  const firebase = useContext(FirebaseContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignIn = async () => {
+  const handleSubmit = async () => {
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log("User signed in:", userCredential.user);
+      const user = firebase.loginUser(email, password);
+      console.log("User signed in:", user);
     } catch (error) {
       console.error("Error signing in:", error);
     }
@@ -36,7 +32,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleSignIn}>Sign Up</button>
+        <button onClick={handleSubmit}>Connexion</button>
       </div>
     </div>
   );

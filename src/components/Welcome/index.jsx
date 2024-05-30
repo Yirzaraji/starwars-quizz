@@ -1,9 +1,13 @@
 import React from "react";
+import Logout from "../Logout/index";
 
 const Welcome = () => {
   return (
     <div className="quiz-bg">
-      <div className="container">Welcome</div>
+      <div className="container">
+        Welcomeeze
+        <Logout />
+      </div>
     </div>
   );
 };
