@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 class Firebase {
@@ -14,16 +15,19 @@ class Firebase {
     this.auth = getAuth(this.app);
   }
 
-  // Inscription
+  // Subscription
   signupUser = (email, password) =>
     createUserWithEmailAndPassword(this.auth, email, password);
 
-  // Connexion
+  // Connection
   loginUser = (email, password) =>
     signInWithEmailAndPassword(this.auth, email, password);
 
-  // Déconnexion
+  // Logout
   logoutUser = () => signOut(this.auth);
+
+  //Recover Password
+  passwordReset = (email) => sendPasswordResetEmail(this.auth, email);
 }
 
 export default Firebase;

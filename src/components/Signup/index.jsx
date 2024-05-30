@@ -6,15 +6,16 @@ const Signup = () => {
   const firebase = useContext(FirebaseContext);
   const navigate = useNavigate();
 
-  const data = {
+  const [loginData, setLoginData] = useState({
     pseudo: "",
     email: "",
     password: "",
     confirmPassword: "",
-  };
-
-  const [loginData, setLoginData] = useState(data);
+  });
   const [error, setError] = useState("");
+
+  //destructuring
+  const { pseudo, email, password, confirmPassword } = loginData;
 
   const handleChange = (event) => {
     //spread operator
@@ -24,8 +25,8 @@ const Signup = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { email, password } = loginData;
-      const user = firebase.signupUser(email, password);
+      //const { email, password } = loginData;
+      const user = await firebase.signupUser(email, password);
       console.log("User signed up:", user);
       navigate("/welcome");
     } catch (error) {
@@ -33,9 +34,6 @@ const Signup = () => {
       setError(error);
     }
   };
-
-  //destructuring
-  const { pseudo, email, password, confirmPassword } = loginData;
 
   const btn =
     pseudo === "" ||

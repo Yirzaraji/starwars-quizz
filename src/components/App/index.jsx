@@ -8,6 +8,7 @@ import Landing from "../Home";
 import Login from "../Login";
 import Signup from "../Signup";
 import Welcome from "../Welcome/index";
+import ForgetPassword from "../ForgetPassword/index";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
 
