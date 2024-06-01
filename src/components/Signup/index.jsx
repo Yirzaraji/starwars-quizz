@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FirebaseContext } from "../Firebase";
+import { setDoc } from "firebase/firestore";
 
 const Signup = () => {
   const firebase = useContext(FirebaseContext);
@@ -25,9 +26,12 @@ const Signup = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      //const { email, password } = loginData;
-      const user = await firebase.signupUser(email, password);
-      console.log("User signed up:", user);
+      const authUser = await firebase.signupUser(email, password);
+      await setDoc(firebase.user(authUser.user.uid), {
+        pseudo: pseudo,
+        email: email,
+      });
+      console.log("User signed up:", authUser);
       navigate("/welcome");
     } catch (error) {
       console.error("Error signing up:", error);

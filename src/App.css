@@ -20,7 +20,7 @@
 }
 
 h1 {
-  font-family: "Bangers", cursive;
+  font-family: "Helvetica", sans-serif;
   font-size: 70px;
   color: var(--white-color);
   font-weight: normal;
@@ -33,7 +33,9 @@ h1 {
 h1 a {
   color: inherit;
   text-decoration: none;
-  font-family: "Bangers", cursive;
+  font-family: "Helvetica", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 h1 a:hover {
@@ -48,13 +50,8 @@ h3 {
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-image: url(images/bg-noise-texture.png);
-  background-repeat: repeat;
+  background-color: #222930;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 hr {
@@ -91,8 +88,9 @@ main {
 
 /* WELCOME PAGE */
 .welcomePage {
-  background-color: var(--red-color);
-  background-image: url(images/wolverine.png);
+  /* background-color: var(--red-color); */
+  background-color: #9b0000;
+  background-image: url(images/sw4.png);
   background-repeat: no-repeat;
   background-position: center center;
   display: flex;
@@ -105,11 +103,11 @@ main {
 }
 
 .leftImg {
-  background-image: url(images/wolverine.png), url(images/griffes-gauche.png);
+  background-image: url(images/sw4.png), url(images/griffes-gauche.png);
 }
 
 .rightImg {
-  background-image: url(images/wolverine.png), url(images/griffes-droit.png);
+  background-image: url(images/sw4.png), url(images/griffes-droit.png);
 }
 
 .leftBox {
@@ -164,6 +162,10 @@ footer {
   padding: 20px 0;
   padding: 20px 0;
   flex: 0 1 80%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .footer-container p {

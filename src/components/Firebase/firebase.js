@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import config from "./config";
+import { getFirestore, doc } from "firebase/firestore";
 
 import {
   getAuth,
@@ -13,6 +14,7 @@ class Firebase {
   constructor() {
     this.app = initializeApp(config);
     this.auth = getAuth(this.app);
+    this.db = getFirestore(this.app);
   }
 
   // Subscription
@@ -28,6 +30,8 @@ class Firebase {
 
   //Recover Password
   passwordReset = (email) => sendPasswordResetEmail(this.auth, email);
+
+  user = (uid) => doc(this.db, `users/${uid}`);
 }
 
 export default Firebase;
