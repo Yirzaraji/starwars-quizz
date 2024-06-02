@@ -1,24 +1,64 @@
-import React from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Levels from "../Levels";
 import ProgressBar from "../ProgressBar";
+import QuizStarWars from "../QuizStarWars";
 
 const Quiz = (props) => {
   //destructuring
+  const [questions, setQuestions] = useState({
+    levelNames: ["debutant", "confirme", "expert"],
+    quizLevel: 0,
+    maxQuestions: 10,
+    storedQuestions: [],
+    question: null,
+    options: [],
+  });
+
+  useEffect(() => {
+    //default arg = debutant
+    const quiz = questions.levelNames[questions.quizLevel];
+    const fetchQuestions = QuizStarWars[0].quiz[quiz];
+    if (fetchQuestions.length >= questions.maxQuestions) {
+      const newArray = fetchQuestions.map(
+        ({ answer, ...keepRest }) => keepRest //Exclude answers from the array to prevent users to cheat
+      );
+      setQuestions((prevState) => ({
+        ...prevState,
+        storedQuestions: newArray,
+        question: newArray[0].question,
+        options: newArray[0].options,
+      }));
+    } else {
+      console.log("not enough mineral");
+    }
+  }, []);
+
   const { email, pseudo } = props.userData;
+  const { question, options, storedQuestions } = questions;
+
   return (
-    <div>
-      Pseudo : {pseudo}
+    <Fragment>
+      <span>
+        Bonjour utilisateur <b>{pseudo}.</b>
+      </span>
+      <span>
+        Email associé: <b>{email}</b>
+      </span>
       <br />
-      Email : {email}
-      <Levels />
       <ProgressBar />
-      <h2>Quiz question</h2>
-      <p className="answerOptions">Question 1</p>
-      <p className="answerOptions">Question 2</p>
-      <p className="answerOptions">Question 3</p>
-      <p className="answerOptions">Question 4</p>
+      <Levels />
+      {storedQuestions.length > 0 && (
+        <>
+          <h2>{question}</h2>
+          {options.map((option, index) => (
+            <p key={index} className="answerOptions">
+              {option}
+            </p>
+          ))}
+        </>
+      )}
       <button className="btnSubmit">Submit</button>
-    </div>
+    </Fragment>
   );
 };
 
