@@ -18,6 +18,7 @@ const Quiz = (props) => {
     userAnswer: null,
     score: 0,
     quizEnd: false,
+    percent: 0,
   });
 
   const storeDataRef = useRef(null);
@@ -66,11 +67,25 @@ const Quiz = (props) => {
     }));
   };
 
+  const getPercentage = (maxQuest, ourScore) => (ourScore / maxQuest) * 100;
+
   const gameOver = () => {
-    setQuizz((prevState) => ({
-      ...prevState,
-      quizEnd: true,
-    }));
+    const gradePercent = getPercentage(quizz.maxQuestions, quizz.score);
+    console.log(gradePercent);
+    if (gradePercent >= 50) {
+      setQuizz((prevState) => ({
+        ...prevState,
+        quizLevel: quizz.quizLevel + 1,
+        percent: gradePercent,
+        quizEnd: true,
+      }));
+    } else {
+      setQuizz((prevState) => ({
+        ...prevState,
+        percent: gradePercent,
+        quizEnd: true,
+      }));
+    }
   };
 
   const nextQuestions = () => {
@@ -98,7 +113,14 @@ const Quiz = (props) => {
   };
 
   return quizz.quizEnd ? (
-    <QuizOver />
+    <QuizOver
+      levelNames={quizz.levelNames}
+      score={quizz.score}
+      maxQuestions={quizz.maxQuestions}
+      quizLevel={quizz.quizLevel}
+      percent={quizz.percent}
+      ref={storeDataRef}
+    />
   ) : (
     <Fragment>
       <span>
