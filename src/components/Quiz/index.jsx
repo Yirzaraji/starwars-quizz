@@ -2,10 +2,11 @@ import React, { useState, useEffect, Fragment, useRef } from "react";
 import Levels from "../Levels";
 import ProgressBar from "../ProgressBar";
 import QuizStarWars from "../QuizStarWars";
+import QuizOver from "../QuizOver";
 
 const Quiz = (props) => {
   //destructuring
-  const [questions, setQuestions] = useState({
+  const [quizz, setQuizz] = useState({
     levelNames: ["debutant", "confirme", "expert"],
     quizLevel: 0,
     maxQuestions: 10,
@@ -16,21 +17,22 @@ const Quiz = (props) => {
     btnDisabled: true,
     userAnswer: null,
     score: 0,
+    quizEnd: false,
   });
 
   const storeDataRef = useRef(null);
 
   useEffect(() => {
     //default arg = debutant
-    const quiz = questions.levelNames[questions.quizLevel];
+    const quiz = quizz.levelNames[quizz.quizLevel];
     const fetchQuestions = QuizStarWars[0].quiz[quiz];
-    if (fetchQuestions.length >= questions.maxQuestions) {
+    if (fetchQuestions.length >= quizz.maxQuestions) {
       storeDataRef.current = fetchQuestions;
 
       const newArray = fetchQuestions.map(
         ({ answer, ...keepRest }) => keepRest //Exclude answers from the array to prevent users to cheat
       );
-      setQuestions((prevState) => ({
+      setQuizz((prevState) => ({
         ...prevState,
         storedQuestions: newArray,
         question: newArray[0].question,
@@ -39,47 +41,65 @@ const Quiz = (props) => {
     } else {
       console.log("not enough mineral");
     }
-    if (questions.idQuestion > 0) {
-      setQuestions((prevState) => ({
+  }, []);
+
+  useEffect(() => {
+    if (quizz.idQuestion > 0 && quizz.idQuestion < 10) {
+      setQuizz((prevState) => ({
         ...prevState,
-        question: questions.storedQuestions[questions.idQuestion].question,
-        options: questions.storedQuestions[questions.idQuestion].options,
+        question: quizz.storedQuestions[quizz.idQuestion].question,
+        options: quizz.storedQuestions[quizz.idQuestion].options,
         btnDisabled: true,
         userAnswer: null,
       }));
     }
-  }, [questions.idQuestion]);
+  }, [quizz.idQuestion]);
 
   const { email, pseudo } = props.userData;
-  const { question, options, storedQuestions } = questions;
+  const { question, options, storedQuestions } = quizz;
 
   const submitAnswer = (selectedAnswer) => {
-    setQuestions((prevState) => ({
+    setQuizz((prevState) => ({
       ...prevState,
       btnDisabled: false,
       userAnswer: selectedAnswer,
     }));
   };
 
+  const gameOver = () => {
+    setQuizz((prevState) => ({
+      ...prevState,
+      quizEnd: true,
+    }));
+  };
+
   const nextQuestions = () => {
-    if (questions.idQuestion === questions.maxQuestions) {
+    if (quizz.idQuestion === quizz.maxQuestions) {
+      console.log("end");
+      gameOver();
     } else {
-      setQuestions((prevState) => ({
+      setQuizz((prevState) => ({
         ...prevState,
         idQuestion: prevState.idQuestion + 1,
       }));
     }
 
-    const goodAnswer = storeDataRef.current[questions.idQuestion].answer;
-    if (questions.userAnswer === goodAnswer) {
-      setQuestions((prevState) => ({
-        ...prevState,
-        score: prevState.score + 1,
-      }));
+    const currentQuestion = storeDataRef.current?.[quizz.idQuestion];
+
+    if (currentQuestion) {
+      const goodAnswer = currentQuestion.answer;
+      if (quizz.userAnswer === goodAnswer) {
+        setQuizz((prevState) => ({
+          ...prevState,
+          score: prevState.score + 1,
+        }));
+      }
     }
   };
 
-  return (
+  return quizz.quizEnd ? (
+    <QuizOver />
+  ) : (
     <Fragment>
       <span>
         Bonjour utilisateur <b>{pseudo}.</b>
@@ -88,7 +108,10 @@ const Quiz = (props) => {
         Email associé: <b>{email}</b>
       </span>
       <br />
-      <ProgressBar />
+      <ProgressBar
+        idQuestion={quizz.idQuestion}
+        maxQuestions={quizz.maxQuestions}
+      />
       <Levels />
       {storedQuestions.length > 0 && (
         <Fragment>
@@ -98,7 +121,7 @@ const Quiz = (props) => {
               onClick={() => submitAnswer(option)}
               key={index}
               className={`answerOptions ${
-                questions.userAnswer === option && "selected" //Compare the onlClick user selected option with the state
+                quizz.userAnswer === option && "selected" //Compare the onlClick user selected option with the state
               }`}
             >
               {option}
@@ -108,10 +131,10 @@ const Quiz = (props) => {
       )}
       <button
         onClick={nextQuestions}
-        disabled={questions.btnDisabled}
+        disabled={quizz.btnDisabled}
         className="btnSubmit"
       >
-        Suivant
+        {quizz.idQuestion < quizz.maxQuestions - 1 ? "Suivant" : "Terminer"}
       </button>
     </Fragment>
   );
