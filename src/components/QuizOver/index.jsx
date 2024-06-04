@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { GiTrophyCup } from "react-icons/gi";
+import Popup from "../Popup";
 
 const QuizOver = React.forwardRef((props, ref) => {
   //console.log(ref.current);
@@ -13,11 +14,20 @@ const QuizOver = React.forwardRef((props, ref) => {
   } = props;
 
   const [asked, setAsked] = useState([]);
+  const [openPopup, setOpenPopup] = useState(false);
 
   useEffect(() => {
     setAsked(ref.current);
     console.log(ref.current);
   }, [ref]);
+
+  const showPopup = (id) => {
+    setOpenPopup(true);
+  };
+
+  const closePopup = () => {
+    setOpenPopup(false);
+  };
 
   const averageQuestions = maxQuestions / 2;
 
@@ -84,7 +94,12 @@ const QuizOver = React.forwardRef((props, ref) => {
             <td>{refQuestion.question}</td>
             <td>{refQuestion.answer}</td>
             <td>
-              <button className="btnInfo">Infos</button>
+              <button
+                onClick={() => showPopup(refQuestion.heroId)}
+                className="btnInfo"
+              >
+                Infos
+              </button>
             </td>
           </tr>
         );
@@ -115,6 +130,17 @@ const QuizOver = React.forwardRef((props, ref) => {
           <tbody>{questionAnswer}</tbody>
         </table>
       </div>
+      <Popup showPopup={openPopup} closePopup={closePopup}>
+        <div className="modalHeader">
+          <h2>Titre</h2>
+        </div>
+        <div className="modalBody">
+          <h3>Titre 2</h3>
+        </div>
+        <div className="modalFooter">
+          <button className="modalBtn">Fermer</button>
+        </div>
+      </Popup>
     </Fragment>
   );
 });
