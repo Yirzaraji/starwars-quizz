@@ -33,10 +33,10 @@ const QuizStarWars = [
         {
           id: 3,
           question:
-            "Comment s'appelle l'étoile de la mort commandée par l'Empereur Palpatine?",
+            "Comment s'appelle la base commandée par l'Empereur Palpatine?",
           options: [
             "L'Étoile Noire",
-            "La Death Star",
+            "l'étoile de la mort",
             "La Base Starkiller",
             "Le Faucon Millenium",
           ],
@@ -45,10 +45,9 @@ const QuizStarWars = [
         },
         {
           id: 4,
-          question:
-            "Quel personnage ne se sépare jamais de son arc de lumière?",
+          question: "Quel personnage ne se sépare jamais de son arbalete?",
           options: ["Han Solo", "Luke Skywalker", "Rey", "Chewbacca"],
-          answer: "Rey",
+          answer: "Chewbacca",
           heroId: 1004,
         },
         {
@@ -61,8 +60,7 @@ const QuizStarWars = [
         },
         {
           id: 6,
-          question:
-            "Quel droïde ressemble à une sphère avec une personnalité amicale?",
+          question: "Quel droïde est le plus sphérique?",
           options: ["R2-D2", "BB-8", "C-3PO", "K-2SO"],
           answer: "BB-8",
           heroId: 1006,

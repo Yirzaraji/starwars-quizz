@@ -2,7 +2,15 @@ import React, { Fragment, useEffect, useState } from "react";
 
 const QuizOver = React.forwardRef((props, ref) => {
   //console.log(ref.current);
-  const { levelNames, score, maxQuestions, quizLevel, percent } = props;
+  const {
+    levelNames,
+    score,
+    maxQuestions,
+    quizLevel,
+    percent,
+    loadLevelsQuestions,
+  } = props;
+
   const [asked, setAsked] = useState([]);
 
   useEffect(() => {
@@ -11,6 +19,13 @@ const QuizOver = React.forwardRef((props, ref) => {
   }, [ref]);
 
   const averageQuestions = maxQuestions / 2;
+
+  if (score < averageQuestions) {
+    setTimeout(() => {
+      loadLevelsQuestions(quizLevel);
+    }, 3000);
+  }
+
   const decision =
     score >= averageQuestions ? (
       <Fragment>
@@ -18,12 +33,22 @@ const QuizOver = React.forwardRef((props, ref) => {
           {quizLevel < levelNames.length ? (
             <Fragment>
               <p className="successMsg">Bravo, passez au niveau suivant</p>
-              <button className="btnResult success">Niveau suivant</button>
+              <button
+                onClick={() => loadLevelsQuestions(quizLevel)}
+                className="btnResult success"
+              >
+                Niveau suivant
+              </button>
             </Fragment>
           ) : (
             <Fragment>
               <p className="successMsg">Bravo, vous etes fort en pomme</p>
-              <button className="btnResult gameOver">Niveau suivant</button>
+              <button
+                onClick={() => loadLevelsQuestions(0)}
+                className="btnResult gameOver"
+              >
+                Accueil
+              </button>
             </Fragment>
           )}
         </div>
@@ -64,8 +89,8 @@ const QuizOver = React.forwardRef((props, ref) => {
     ) : (
       <tr>
         <td colSpan="3">
-          <p style={{ textAlign: "center", color: "red" }}></p>
-          Pas de reponses !
+          <div className="loader"></div>
+          <p style={{ textAlign: "center", color: "red" }}>Echec !</p>
         </td>
       </tr>
     );

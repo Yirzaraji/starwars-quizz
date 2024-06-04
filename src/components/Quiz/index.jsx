@@ -27,6 +27,7 @@ const Quiz = (props) => {
     //default arg = debutant
     const quiz = quizz.levelNames[quizz.quizLevel];
     const fetchQuestions = QuizStarWars[0].quiz[quiz];
+    //console.log(QuizStarWars[0].quiz[quiz]);
     if (fetchQuestions.length >= quizz.maxQuestions) {
       storeDataRef.current = fetchQuestions;
 
@@ -89,7 +90,7 @@ const Quiz = (props) => {
   };
 
   const nextQuestions = () => {
-    if (quizz.idQuestion === quizz.maxQuestions) {
+    if (quizz.idQuestion === quizz.maxQuestions - 1) {
       console.log("end");
       gameOver();
     } else {
@@ -98,9 +99,7 @@ const Quiz = (props) => {
         idQuestion: prevState.idQuestion + 1,
       }));
     }
-
     const currentQuestion = storeDataRef.current?.[quizz.idQuestion];
-
     if (currentQuestion) {
       const goodAnswer = currentQuestion.answer;
       if (quizz.userAnswer === goodAnswer) {
@@ -112,6 +111,35 @@ const Quiz = (props) => {
     }
   };
 
+  const loadLevelsQuestions = (param) => {
+    const quiz = quizz.levelNames[param];
+    const fetchQuestions = QuizStarWars[0].quiz[quiz];
+
+    if (fetchQuestions.length >= quizz.maxQuestions) {
+      storeDataRef.current = fetchQuestions;
+
+      const newArray = fetchQuestions.map(
+        ({ answer, ...keepRest }) => keepRest
+      );
+
+      setQuizz({
+        levelNames: ["debutant", "confirme", "expert"],
+        quizLevel: param,
+        maxQuestions: 10,
+        storedQuestions: newArray,
+        question: newArray[0].question,
+        options: newArray[0].options,
+        idQuestion: 0,
+        btnDisabled: true,
+        userAnswer: null,
+        score: 0,
+        quizEnd: false,
+        percent: 0,
+      });
+    }
+  };
+
+  //JSX START HERE
   return quizz.quizEnd ? (
     <QuizOver
       levelNames={quizz.levelNames}
@@ -120,6 +148,7 @@ const Quiz = (props) => {
       quizLevel={quizz.quizLevel}
       percent={quizz.percent}
       ref={storeDataRef}
+      loadLevelsQuestions={loadLevelsQuestions}
     />
   ) : (
     <Fragment>
