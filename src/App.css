@@ -459,6 +459,7 @@ input:checked + .slider:before {
   background-color: var(--light-grey-color);
   padding: 20px;
   margin-bottom: 40px;
+  background: transparent;
 }
 
 .headingLevels {
@@ -479,6 +480,7 @@ input:checked + .slider:before {
   flex: 0 1 40%;
   padding: 8px 0;
   border-radius: 6px;
+  margin-top: 2rem;
 }
 
 .progressBar {

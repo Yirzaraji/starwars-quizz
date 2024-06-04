@@ -3,6 +3,7 @@ import Levels from "../Levels";
 import ProgressBar from "../ProgressBar";
 import QuizStarWars from "../QuizStarWars";
 import QuizOver from "../QuizOver";
+import { FaChevronRight } from "react-icons/fa";
 
 const Quiz = (props) => {
   //destructuring
@@ -159,11 +160,11 @@ const Quiz = (props) => {
         Email associé: <b>{email}</b>
       </span>
       <br />
+      <Levels quizLevel={quizz.quizLevel} levelNames={quizz.levelNames} />
       <ProgressBar
         idQuestion={quizz.idQuestion}
         maxQuestions={quizz.maxQuestions}
       />
-      <Levels />
       {storedQuestions.length > 0 && (
         <Fragment>
           <h2>{question}</h2>
@@ -175,6 +176,7 @@ const Quiz = (props) => {
                 quizz.userAnswer === option && "selected" //Compare the onlClick user selected option with the state
               }`}
             >
+              {<FaChevronRight />}
               {option}
             </p>
           ))}

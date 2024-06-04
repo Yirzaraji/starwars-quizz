@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Stepper, Step, StepLabel, Box } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./stepperTheme";
 
-const Levels = () => {
+const Levels = ({ levelNames = [], quizLevel = 0 }) => {
+  const [levels, setLevels] = useState([]);
+
+  useEffect(() => {
+    const quizStep = levelNames.map((level) => ({
+      title: level.toUpperCase(),
+    }));
+    setLevels(quizStep);
+  }, [levelNames]);
+
+  //material UI stepper
   return (
-    <div className="levelsContainer">
-      <h2 className="headingLevels">Débutant</h2>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ width: "100%", marginTop: 2 }}>
+        <Stepper activeStep={quizLevel} alternativeLabel>
+          {levels.map((level, index) => (
+            <Step key={index}>
+              <StepLabel>{level.title}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Box>
+    </ThemeProvider>
   );
 };
 
-export default Levels;
+export default React.memo(Levels);
