@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { GiTrophyCup } from "react-icons/gi";
 import Popup from "../Popup";
+import axios from "axios";
 
 const QuizOver = React.forwardRef((props, ref) => {
   //console.log(ref.current);
@@ -15,18 +16,32 @@ const QuizOver = React.forwardRef((props, ref) => {
 
   const [asked, setAsked] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
+  const [characterInfos, setCharacterInfos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setAsked(ref.current);
     console.log(ref.current);
   }, [ref]);
 
-  const showPopup = (id) => {
+  const showPopup = async (id) => {
     setOpenPopup(true);
+    try {
+      const response = await axios.get(
+        `https://swapi.dev/api/people/${id}/?format=json`
+      );
+      const data = response.data;
+      setLoading(false);
+      console.log(data);
+      setCharacterInfos(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const closePopup = () => {
     setOpenPopup(false);
+    setLoading(true);
   };
 
   const averageQuestions = maxQuestions / 2;
@@ -113,6 +128,34 @@ const QuizOver = React.forwardRef((props, ref) => {
       </tr>
     );
 
+  const resultInPopup = !loading ? (
+    <Fragment>
+      <div className="modalHeader">
+        <h2>{characterInfos.name}</h2>
+      </div>
+      <div className="modalBody">
+        <ul>
+          <li>Année de naissance: {characterInfos.birth_year}</li>
+          <li>Genre: {characterInfos.gender}</li>
+          <li>Poid: {characterInfos.mass}</li>
+          <li>Taille: {characterInfos.height}</li>
+        </ul>
+      </div>
+      <div className="modalFooter">
+        <button className="modalBtn">Fermer</button>
+      </div>
+    </Fragment>
+  ) : (
+    <Fragment>
+      <div className="modalHeader">
+        <h2>API SWAPI...</h2>
+      </div>
+      <div className="modalBody">
+        <div className="loader"></div>
+      </div>
+    </Fragment>
+  );
+
   return (
     <Fragment>
       {decision}
@@ -131,15 +174,7 @@ const QuizOver = React.forwardRef((props, ref) => {
         </table>
       </div>
       <Popup showPopup={openPopup} closePopup={closePopup}>
-        <div className="modalHeader">
-          <h2>Titre</h2>
-        </div>
-        <div className="modalBody">
-          <h3>Titre 2</h3>
-        </div>
-        <div className="modalFooter">
-          <button className="modalBtn">Fermer</button>
-        </div>
+        {resultInPopup}
       </Popup>
     </Fragment>
   );
