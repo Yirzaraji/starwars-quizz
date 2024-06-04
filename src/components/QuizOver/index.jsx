@@ -22,20 +22,47 @@ const QuizOver = React.forwardRef((props, ref) => {
   useEffect(() => {
     setAsked(ref.current);
     console.log(ref.current);
+
+    //Clear localstorage each 15 days
+    if (localStorage.getItem("swapiStorageDate")) {
+      const dataAge = localStorage.getItem("swapiStorageDate");
+      checkDataAge(dataAge);
+    }
   }, [ref]);
+
+  const checkDataAge = (dataAge) => {
+    const today = Date.now();
+    const timeDifference = today - Date;
+    const daysDifference = timeDifference / (1000 * 3600 * 24);
+    if (daysDifference >= 15) {
+      localStorage.clear();
+      localStorage.getItem("swapiStorageDate", Date.now());
+    }
+  };
 
   const showPopup = async (id) => {
     setOpenPopup(true);
-    try {
-      const response = await axios.get(
-        `https://swapi.dev/api/people/${id}/?format=json`
-      );
-      const data = response.data;
+
+    if (localStorage.getItem(id)) {
+      setCharacterInfos(JSON.parse(localStorage.getItem(id)));
       setLoading(false);
-      console.log(data);
-      setCharacterInfos(response.data);
-    } catch (error) {
-      console.error(error);
+    } else {
+      try {
+        const response = await axios.get(
+          `https://swapi.dev/api/people/${id}/?format=json`
+        );
+        const data = response.data;
+        console.log(data);
+        setLoading(false);
+        setCharacterInfos(response.data);
+
+        localStorage.setItem(id, JSON.stringify(data));
+        if (!localStorage.getItem("swapiStorageDate")) {
+          localStorage.setItem("swapiStorageDate", Date.now());
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -134,15 +161,42 @@ const QuizOver = React.forwardRef((props, ref) => {
         <h2>{characterInfos.name}</h2>
       </div>
       <div className="modalBody">
-        <ul>
-          <li>Année de naissance: {characterInfos.birth_year}</li>
-          <li>Genre: {characterInfos.gender}</li>
-          <li>Poid: {characterInfos.mass}</li>
-          <li>Taille: {characterInfos.height}</li>
-        </ul>
+        <div className="comicImage">
+          <img
+            src="https://artistmonkeys.com/wp-content/uploads/2021/09/Mitthrawnuruodo-Thrawn-portrait-4.jpg"
+            alt=""
+          />
+          Data provided by the dead API SWAPI :D
+        </div>
+        <div className="comicDetails">
+          <h3>Descriptions</h3>
+          <p>
+            <ul>
+              <li>Année de naissance: {characterInfos.birth_year}</li>
+              <li>Genre: {characterInfos.gender}</li>
+              <li>Poid: {characterInfos.mass}</li>
+              <li>Taille: {characterInfos.height}</li>
+            </ul>
+          </p>
+          <h3>Plus d'infos</h3>
+          {characterInfos.films.map((url, index) => {
+            return (
+              <a
+                key={index}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Film
+              </a>
+            );
+          })}
+        </div>
       </div>
       <div className="modalFooter">
-        <button className="modalBtn">Fermer</button>
+        <button onClick={closePopup} className="modalBtn">
+          Fermer
+        </button>
       </div>
     </Fragment>
   ) : (
@@ -173,9 +227,7 @@ const QuizOver = React.forwardRef((props, ref) => {
           <tbody>{questionAnswer}</tbody>
         </table>
       </div>
-      <Popup showPopup={openPopup} closePopup={closePopup}>
-        {resultInPopup}
-      </Popup>
+      <Popup showPopup={openPopup}>{resultInPopup}</Popup>
     </Fragment>
   );
 });

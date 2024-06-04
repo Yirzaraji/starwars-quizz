@@ -124,8 +124,8 @@ main {
 }
 
 .btn-welcome {
-  border: 2px solid var(--white-color);
-  color: var(--white-color);
+  /* border: 2px solid var(--white-color); */
+  color: var(--deep-black-color);
   padding: 12px 25px;
   border-radius: 5px;
   background-color: transparent;
@@ -134,12 +134,12 @@ main {
   text-align: center;
   text-decoration: none;
   margin-top: 150px;
+  background-color: var(--white-color);
 }
 
 .btn-welcome:hover {
-  border: 2px solid var(--white-color);
-  color: var(--red-color);
-  background-color: var(--white-color);
+  color: white;
+  background-color: var(--dark-grey-color);
 }
 /* END WELCOME PAGE */
 
@@ -198,13 +198,14 @@ footer {
 
 /* SIGNUP - LOGIN - FORGETPASSWORD */
 .signUpLoginBox {
-  background-image: url(images/bg-noise-texture.png);
-  background-repeat: repeat;
+  /* background-image: url(images/bg-noise-texture.png); */
+  background-repeat: no-repeat;
   -webkit-box-shadow: inset 0px 143px 108px -18px rgba(0, 0, 0, 0.39);
   -moz-box-shadow: inset 0px 143px 108px -18px rgba(0, 0, 0, 0.39);
   box-shadow: inset 0px 143px 108px -18px rgba(0, 0, 0, 0.39);
   display: flex;
   justify-content: center;
+  background-image: url(http://localhost:3000/static/media/sw4.c23f41fe58c650641dca.png);
 }
 
 .slContainer {
@@ -214,7 +215,7 @@ footer {
 
 .formBoxLeftSignup {
   min-height: 500px;
-  background-image: url(images/ironman.png);
+  /* background-image: url(images/ironman.png); */
   background-repeat: no-repeat;
   background-position: center center;
   flex: 0 1 50%;
@@ -222,7 +223,7 @@ footer {
 
 .formBoxLeftLogin {
   min-height: 500px;
-  background-image: url(images/spiderman.png);
+  /* background-image: url(images/spiderman.png); */
   background-repeat: no-repeat;
   background-position: center center;
   flex: 0 1 50%;
@@ -230,7 +231,7 @@ footer {
 
 .formBoxLeftForget {
   min-height: 500px;
-  background-image: url(images/deadpool.png);
+  /* background-image: url(images/deadpool.png); */
   background-repeat: no-repeat;
   background-position: center center;
   flex: 0 1 50%;
@@ -253,6 +254,7 @@ footer {
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
+  background: #1d2023f2;
 }
 
 .formContent h2 {
@@ -271,14 +273,15 @@ footer {
   width: 100%;
   padding: 10px 0;
   font-size: 17px;
-  color: var(--red-color);
+  color: rgb(41, 41, 41);
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 30px;
   border: none;
-  background: transparent;
+  background: white;
   border-bottom: 1px solid var(--white-color);
   outline: none;
+  padding-left: 5px;
 }
 
 .formContent .inputBox label {
@@ -306,15 +309,15 @@ footer {
 
 /* Form buttons */
 .formContent button {
-  margin-left: 0;
   display: block;
   margin: 0 auto 20px;
   min-width: 150px;
   background-color: transparent;
-  color: var(--white-color);
+  color: #181818;
   padding: 7px;
   font-size: 15px;
   border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
 .formContent button:hover {

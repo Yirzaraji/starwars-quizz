@@ -1,9 +1,9 @@
 import React from "react";
 
-const Popup = ({ showPopup, children, closePopup }) => {
+const Popup = ({ showPopup, children }) => {
   return (
     showPopup && (
-      <div onClick={closePopup} className="modalBackground">
+      <div className="modalBackground">
         <div className="modalContainer">{children}</div>
       </div>
     )
