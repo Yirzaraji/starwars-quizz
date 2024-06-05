@@ -37,7 +37,6 @@ const ForgetPassword = () => {
   return (
     <div className="signUpLoginBox">
       <div className="slContainer">
-        <div className="formBoxLeftForget"></div>
         <div className="formBoxRight">
           <div className="formContent">
             {console.log(success)}

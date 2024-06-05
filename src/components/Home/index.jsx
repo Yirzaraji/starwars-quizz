@@ -8,10 +8,8 @@ const Landing = () => {
 
   useEffect(() => {
     refWolverine.current.classList.add("startingImg");
-    setTimeout(() => {
-      refWolverine.current.classList.remove("startingImg");
-      setBtn(true);
-    }, 500);
+    refWolverine.current.classList.remove("startingImg");
+    setBtn(true);
   }, []);
 
   const setLeftImg = () => {

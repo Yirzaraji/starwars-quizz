@@ -55,7 +55,6 @@ const Signup = () => {
   return (
     <div className="signUpLoginBox">
       <div className="slContainer">
-        <div className="formBoxLeftSignup"></div>
         <div className="formBoxRight">
           <div className="formContent">
             {errorMsg}

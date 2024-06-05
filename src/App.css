@@ -94,7 +94,7 @@ main {
   background-repeat: no-repeat;
   background-position: center center;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 500px;
 }
 
@@ -124,17 +124,16 @@ main {
 }
 
 .btn-welcome {
-  /* border: 2px solid var(--white-color); */
   color: var(--deep-black-color);
   padding: 12px 25px;
-  border-radius: 5px;
-  background-color: transparent;
-  font-weight: normal;
-  font-size: 19px;
-  text-align: center;
+  border-radius: 100px;
+  font-size: 0.9rem;
   text-decoration: none;
   margin-top: 150px;
-  background-color: var(--white-color);
+  background-color: #ffffffd9;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bolder;
 }
 
 .btn-welcome:hover {
@@ -209,8 +208,10 @@ footer {
 }
 
 .slContainer {
-  flex: 0 1 80%;
+  flex: 0 1 40%;
   display: flex;
+  justify-content: center;
+  margin: 1.7rem;
 }
 
 .formBoxLeftSignup {
@@ -282,6 +283,7 @@ footer {
   border-bottom: 1px solid var(--white-color);
   outline: none;
   padding-left: 5px;
+  font-size: 0.9rem;
 }
 
 .formContent .inputBox label {
@@ -817,6 +819,7 @@ input:checked + .slider:before {
     flex-direction: column;
     height: 300px;
     justify-content: center;
+    justify-content: space-evenly;
   }
 
   .btn-welcome {
@@ -881,6 +884,14 @@ input:checked + .slider:before {
     background-color: rgb(40, 40, 40);
     color: white;
     border: 2px solid rgb(40, 40, 40);
+  }
+
+  .slContainer {
+    flex: 0 1 80%;
+  }
+
+  .linkContainer {
+    height: 70px;
   }
 }
 
