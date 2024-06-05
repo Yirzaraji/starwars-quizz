@@ -89,7 +89,7 @@ main {
 /* WELCOME PAGE */
 .welcomePage {
   /* background-color: var(--red-color); */
-  background-color: #9b0000;
+  background-color: var(--dark-grey-color);
   background-image: url(images/sw4.png);
   background-repeat: no-repeat;
   background-position: center center;
@@ -814,10 +814,15 @@ input:checked + .slider:before {
 
 @media all and (max-width: 850px) {
   .welcomePage {
-    background-image: none;
     flex-direction: column;
     height: 300px;
     justify-content: center;
+  }
+
+  .btn-welcome {
+    padding: 12px 0px;
+    border-radius: 100px;
+    flex-basis: 200px !important;
   }
 
   .leftBox {
@@ -837,6 +842,45 @@ input:checked + .slider:before {
   .btn-welcome {
     margin-top: 0;
     flex-basis: 300px;
+  }
+  h1 {
+    font-size: 50px;
+  }
+
+  h1 a {
+    font-size: 1.2rem;
+  }
+
+  .signUpLoginBox {
+    background-image: url(./images/sw4.png);
+    padding: 3rem 0rem 2rem 0rem;
+  }
+
+  .formContent .inputBox input {
+    font-size: 0.9rem;
+  }
+
+  .footer-container {
+    position: relative;
+  }
+
+  .comicDetails a {
+    margin-bottom: 0.5rem;
+  }
+
+  .successMsg {
+    display: none;
+  }
+  .btnResult {
+    top: 153px;
+    background-color: var(--light-green-color);
+    color: white;
+  }
+
+  .btnResult:hover {
+    background-color: rgb(40, 40, 40);
+    color: white;
+    border: 2px solid rgb(40, 40, 40);
   }
 }
 

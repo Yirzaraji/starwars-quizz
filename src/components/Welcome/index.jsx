@@ -46,7 +46,7 @@ const Welcome = () => {
     userSession === null ? (
       <Fragment>
         <div className="loader"></div>
-        <p className="loaderText">Connectez-vous...</p>
+        <p className="loaderText">Patientez...</p>
       </Fragment>
     ) : (
       <Fragment>
