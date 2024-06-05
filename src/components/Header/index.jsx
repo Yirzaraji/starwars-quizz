@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Signout from "../Logout/index";
 
 const Header = () => {
@@ -9,7 +10,7 @@ const Header = () => {
           Login: demo@test.fr | Pass: demo123 | Pseudo:demo
         </h5>
         <h1>
-          <a href="/"> Star Wars Quiz</a>
+          <Link to="/"> Star Wars Quiz</Link>
         </h1>
       </div>
     </header>

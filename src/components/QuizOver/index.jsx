@@ -30,6 +30,7 @@ const QuizOver = React.forwardRef((props, ref) => {
     }
   }, [ref]);
 
+  //Clear localstorage each 15 days
   const checkDataAge = (dataAge) => {
     const today = Date.now();
     const timeDifference = today - Date;
@@ -162,22 +163,19 @@ const QuizOver = React.forwardRef((props, ref) => {
       </div>
       <div className="modalBody">
         <div className="comicImage">
-          <img
-            src="https://artistmonkeys.com/wp-content/uploads/2021/09/Mitthrawnuruodo-Thrawn-portrait-4.jpg"
-            alt=""
-          />
-          Data provided by the dead API SWAPI :D
+          <img src={asked[0].image} alt="img-sw" />; Data provided by the dead
+          API SWAPI :D
         </div>
         <div className="comicDetails">
           <h3>Descriptions</h3>
-          <p>
-            <ul>
-              <li>Année de naissance: {characterInfos.birth_year}</li>
-              <li>Genre: {characterInfos.gender}</li>
-              <li>Poid: {characterInfos.mass}</li>
-              <li>Taille: {characterInfos.height}</li>
-            </ul>
-          </p>
+
+          <ul>
+            <li>Année de naissance: {characterInfos.birth_year}</li>
+            <li>Genre: {characterInfos.gender}</li>
+            <li>Poid: {characterInfos.mass}</li>
+            <li>Taille: {characterInfos.height}</li>
+          </ul>
+
           <h3>Plus d'infos</h3>
           {characterInfos.films.map((url, index) => {
             return (

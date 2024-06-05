@@ -10,6 +10,7 @@ const QuizStarWars = [
           options: ["Les Sith", "Les Jedi", "Les Mandaloriens", "Les Hutts"],
           answer: "Les Jedi",
           heroId: 20,
+          image: "/images/yoda.jpg",
         },
         {
           id: 1,
@@ -17,6 +18,7 @@ const QuizStarWars = [
           options: ["Cristaux de Kyber", "Energium", "Vibranium", "Duracier"],
           answer: "Cristaux de Kyber",
           heroId: 32,
+          image: "/images/quigon.jpg",
         },
         {
           id: 2,
@@ -29,6 +31,7 @@ const QuizStarWars = [
           ],
           answer: "Anakin Skywalker",
           heroId: 4,
+          image: "/images/anakin.jpg",
         },
         {
           id: 3,
@@ -42,6 +45,7 @@ const QuizStarWars = [
           ],
           answer: "l'étoile de la mort",
           heroId: 21,
+          image: "/images/palpatine.jpg",
         },
         {
           id: 4,
@@ -49,6 +53,7 @@ const QuizStarWars = [
           options: ["Han Solo", "Luke Skywalker", "Rey", "Chewbacca"],
           answer: "Chewbacca",
           heroId: 13,
+          image: "/images/chewie.jpg",
         },
         {
           id: 5,
@@ -57,6 +62,7 @@ const QuizStarWars = [
           options: ["Jaune", "Rouge", "Vert", "Bleu"],
           answer: "Vert",
           heroId: 1,
+          image: "/images/luke.jpg",
         },
         {
           id: 6,
@@ -64,6 +70,7 @@ const QuizStarWars = [
           options: ["R2-D2", "BB-8", "C-3PO", "K-2SO"],
           answer: "BB-8",
           heroId: 3,
+          image: "/images/r2d2.jpg",
         },
         {
           id: 7,
@@ -76,6 +83,7 @@ const QuizStarWars = [
           ],
           answer: "Anakin Skywalker",
           heroId: 11,
+          image: "/images/anakin.jpg",
         },
         {
           id: 8,
@@ -84,6 +92,7 @@ const QuizStarWars = [
           options: ["Boba Fett", "Darth Maul", "Darth Vader", "Kylo Ren"],
           answer: "Darth Vader",
           heroId: 4,
+          image: "/images/vader.jpg",
         },
         {
           id: 9,
@@ -91,6 +100,7 @@ const QuizStarWars = [
           options: [8, 6, 10, 4],
           answer: 8,
           heroId: 20,
+          image: "/images/yoda.jpg",
         },
       ],
       confirme: [
@@ -101,6 +111,7 @@ const QuizStarWars = [
           options: ["Yoda", "Obi-Wan Kenobi", "Mace Windu", "Qui-Gon Jinn"],
           answer: "Obi-Wan Kenobi",
           heroId: 10,
+          image: "/images/obiwan.jpg",
         },
         {
           id: 1,
@@ -113,6 +124,7 @@ const QuizStarWars = [
           ],
           answer: "Anakin Skywalker",
           heroId: 35,
+          image: "/images/padme.jpg",
         },
         {
           id: 2,
@@ -126,6 +138,7 @@ const QuizStarWars = [
           ],
           answer: "Anakin Skywalker",
           heroId: 21,
+          image: "/images/palpatine.jpg",
         },
         {
           id: 3,
@@ -139,6 +152,7 @@ const QuizStarWars = [
           ],
           answer: "Darth Vader",
           heroId: 25,
+          image: "/images/jabba.jpg",
         },
         {
           id: 4,
@@ -146,6 +160,7 @@ const QuizStarWars = [
           options: ["Yoda", "Mace Windu", "Darth Sidious", "Darth Maul"],
           answer: "Darth Sidious",
           heroId: 21,
+          image: "/images/palpatine.jpg",
         },
         {
           id: 5,
@@ -158,6 +173,7 @@ const QuizStarWars = [
           ],
           answer: "Un Jedi",
           heroId: 11,
+          image: "/images/anakin.jpg",
         },
         {
           id: 6,
@@ -166,6 +182,7 @@ const QuizStarWars = [
           options: ["Luke Skywalker", "Chirrut Îmwe", "Darth Vader", "Yoda"],
           answer: "Chirrut Îmwe",
           heroId: 32,
+          image: "/images/yoda.jpg",
         },
         {
           id: 7,
@@ -179,6 +196,7 @@ const QuizStarWars = [
           ],
           answer: "Un Maître Jedi",
           heroId: 44,
+          image: "/images/lando.jpg",
         },
         {
           id: 8,
@@ -186,6 +204,7 @@ const QuizStarWars = [
           options: ["Naboo", "Tatooine", "Kashyyyk", "Endor"],
           answer: "Kashyyyk",
           heroId: 13,
+          image: "/images/chewie.jpg",
         },
         {
           id: 9,
@@ -198,6 +217,7 @@ const QuizStarWars = [
           ],
           answer: "Tous les précédents",
           heroId: 32,
+          image: "/images/quigon.jpg",
         },
       ],
       expert: [
@@ -213,6 +233,7 @@ const QuizStarWars = [
           ],
           answer: "Voler les plans de l'Étoile de la Mort",
           heroId: 5,
+          image: "/images/leia.jpg",
         },
         {
           id: 1,
@@ -225,6 +246,7 @@ const QuizStarWars = [
           ],
           answer: "Darth Traya",
           heroId: 21,
+          image: "/images/maul.jpg",
         },
         {
           id: 2,
@@ -238,6 +260,7 @@ const QuizStarWars = [
           ],
           answer: "Jabba le Hutt",
           heroId: 16,
+          image: "/images/windu.jpg",
         },
         {
           id: 3,
@@ -246,6 +269,7 @@ const QuizStarWars = [
           options: ["Ahsoka Tano", "Asajj Ventress", "Rey", "Leia Organa"],
           answer: "Asajj Ventress",
           heroId: 5,
+          image: "/images/leia.jpg",
         },
         {
           id: 4,
@@ -253,6 +277,7 @@ const QuizStarWars = [
           options: ["Dagobah", "Tatooine", "Hoth", "Endor"],
           answer: "Dagobah",
           heroId: 20,
+          image: "/images/yoda.jpg",
         },
         {
           id: 5,
@@ -266,6 +291,7 @@ const QuizStarWars = [
           ],
           answer: "Yaddle",
           heroId: 20,
+          image: "/images/yoda.jpg",
         },
         {
           id: 6,
@@ -274,6 +300,7 @@ const QuizStarWars = [
           options: ["Kyber", "Opila", "Adegan", "Violette"],
           answer: "Violette",
           heroId: 51,
+          image: "/images/windu.jpg",
         },
         {
           id: 7,
@@ -287,6 +314,7 @@ const QuizStarWars = [
           ],
           answer: "Ahsoka Tano",
           heroId: 44,
+          image: "/images/obiwan.jpg",
         },
         {
           id: 8,
@@ -295,6 +323,7 @@ const QuizStarWars = [
           options: ["L'Empire", "Les Jedi", "Les Kaminoans", "Les Wookiees"],
           answer: "Les Kaminoans",
           heroId: 9,
+          image: "/images/chewie.jpg",
         },
         {
           id: 9,
@@ -302,6 +331,7 @@ const QuizStarWars = [
           options: ["Sheev", "Dooku", "Sidious", "Maul"],
           answer: "Sheev",
           heroId: 21,
+          image: "/images/palpatine.jpg",
         },
       ],
     },
